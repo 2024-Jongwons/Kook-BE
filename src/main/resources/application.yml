@@ -7,13 +7,18 @@ spring:
     username: ${DB_UN}
     password: ${DB_PW}
 
+  servlet:
+    multipart:
+      max-file-size: 10GB
+      max-request-size: 10GB  # ? ??? spring ??? ???? ???.
+
   jpa:
     show-sql: true
     properties:
       hibernate:
         format_sql: true
     database: mysql
-    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    database-platform: org.hibernate.dialect.MySQLDialect
     hibernate:
       ddl-auto: update
 
@@ -30,11 +35,6 @@ cloud:
       static: ${AWS_RG}
     stack:
       auto: false
-
-  servlet:
-    multipart:
-      max-file-size: 300MB
-      max-request-size: 300MB
 
 logging:
   level:
