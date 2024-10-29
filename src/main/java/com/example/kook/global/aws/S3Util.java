@@ -45,7 +45,7 @@ public class S3Util {
         String filePath;
 
         try {
-            filePath = saveImage(video, extension);
+            filePath = saveVideo(video, extension);
         } catch (IOException e) {
             throw VideoUploadFailException.EXCEPTION;
         }
@@ -53,7 +53,7 @@ public class S3Util {
         return filePath;
     }
 
-    private String saveImage(MultipartFile file, String extension) throws IOException {
+    private String saveVideo(MultipartFile file, String extension) throws IOException {
         String filePath = UUID.randomUUID() + extension;
 
         ObjectMetadata objectMetadata = new ObjectMetadata();
@@ -66,11 +66,13 @@ public class S3Util {
         return filePath;
     }
 
-    public String verificationFile(MultipartFile file){
-        if(file == null || file.isEmpty() || file.getOriginalFilename() == null) throw VideoBadRequestException.EXCEPTION;
+    public String verificationFile(MultipartFile file) {
+        if (file == null || file.isEmpty() || file.getOriginalFilename() == null) {
+            throw VideoBadRequestException.EXCEPTION;
+        }
 
-        String extension = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
-        if(!(extension.contains(".MP4") || extension.contains(".MOV") || extension.contains(".WMV") || extension.contains(".AVI"))) {
+        String extension = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(".")).toLowerCase();
+        if (!(extension.equals(".mp4") || extension.equals(".mov") || extension.equals(".wmv") || extension.equals(".avi"))) {
             throw VideoBadRequestException.EXCEPTION;
         }
 
