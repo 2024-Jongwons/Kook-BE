@@ -35,8 +35,8 @@ public class S3Util {
     public String getProfileImageUrl(String path) {
         return (path != null)? baseUrl + "/" + path : defaultImage;
     }
-    public String getPostImageUrl(String path) {
-        return (path != null)? baseUrl + "/" + path : null;
+    public String getVideoUrl(String path) {
+        return baseUrl + "/" + path;
     }
 
 
