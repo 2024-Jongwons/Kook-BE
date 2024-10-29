@@ -47,4 +47,9 @@ public class Post {
         this.userId = userId;
         this.videoPath = videoPath;
     }
+
+
+    public int getCommentCount() {
+        return comments.size();
+    }
 }

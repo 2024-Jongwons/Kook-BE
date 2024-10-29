@@ -35,4 +35,5 @@ public class Comment {
         this.content = content;
         this.post = post;
     }
+
 }

@@ -18,7 +18,7 @@ public class PostResponse {
     private final List<CommentResponse> comments;
 
     @Builder
-    public PostResponse(Long id, String title, String userId, String profileImage, String videoPath, Integer heartCounts, Integer commentCounts) {
+    public PostResponse(Long id, String title, String userId, String profileImage, String videoPath, Integer heartCounts, Integer commentCounts, List<CommentResponse> comments) {
         this.id = id;
         this.title = title;
         this.userId = userId;
@@ -26,5 +26,6 @@ public class PostResponse {
         this.videoPath = videoPath;
         this.heartCounts = heartCounts;
         this.commentCounts = commentCounts;
+        this.comments = comments;
     }
 }
