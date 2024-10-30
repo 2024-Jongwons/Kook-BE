@@ -1,0 +1,43 @@
+server:
+  port: 8089
+
+spring:
+  datasource:
+    url: ${DB_NAME}
+    username: ${DB_UN}
+    password: ${DB_PW}
+
+  servlet:
+    multipart:
+      max-file-size: 10GB
+      max-request-size: 10GB  # ? ??? spring ??? ???? ???.
+
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQLDialect
+    hibernate:
+      ddl-auto: update
+
+cloud:
+  aws:
+    s3:
+      default-image: https://khtback.s3.ap-northeast-2.amazonaws.com/kthdf.png
+      url: ${S3_URL}
+      bucket: ${S3_BK}
+    credentials:
+      access-key: ${AWS_AC}
+      secret-key: ${AWS_SC}
+    region:
+      static: ${AWS_RG}
+    stack:
+      auto: false
+
+logging:
+  level:
+    org:
+      hibernate:
+        type: trace

@@ -1,5 +1,6 @@
 package com.example.kook.domain.comment.domain;
 
+import com.example.kook.domain.post.domain.Post;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -21,12 +22,18 @@ public class Comment {
     private String userId;
 
     @Column(nullable = false, length = 100)
-    private String contents;
+    private String content;
+
+    @ManyToOne
+    @JoinColumn(name = "post_id")
+    private Post post;
 
     @Builder
-    public Comment(String title, String userId, String contents) {
+    public Comment(String title, String userId, String content, Post post) {
         this.title = title;
         this.userId = userId;
-        this.contents = contents;
+        this.content = content;
+        this.post = post;
     }
+
 }
