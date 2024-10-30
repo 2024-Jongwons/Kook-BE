@@ -1,5 +1,6 @@
 package com.example.kook.domain.post.presentation;
 
+import com.example.kook.domain.post.domain.Post;
 import com.example.kook.domain.post.presentation.dto.request.PostRequest;
 import com.example.kook.domain.post.service.PostService;
 import lombok.RequiredArgsConstructor;
@@ -32,4 +33,26 @@ public class PostController {
 
         return ResponseEntity.ok(postService.createPost(postRequest));
     } //악더러워
+
+    @GetMapping("/tag/{tagName}")
+    public List<Post> getPostsByTag(@PathVariable String tagName) {
+        return postService.getPostsByTagName(tagName);
+    }
+
+    @GetMapping()
+    public List<Post> getPosts(){
+        return postService.getAllPosts();
+    }
+
+    @PostMapping("/heart/{postId}")
+    public ResponseEntity<Integer> addHeart(@PathVariable Long postId) {
+        Integer updatedHeartCount = postService.addHeartToPost(postId);
+        return ResponseEntity.ok(updatedHeartCount);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Post> getPostById(@PathVariable Long id) {
+        Post post = postService.getPostById(id);
+        return ResponseEntity.ok(post);
+    }
 }

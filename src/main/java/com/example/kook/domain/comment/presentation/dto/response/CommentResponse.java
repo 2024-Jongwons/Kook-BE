@@ -11,7 +11,7 @@ public class CommentResponse {
     private final String content;
 
     @Builder
-    public CommentResponse(Long id, String userId, String profileImage, String content, String createDate) {
+    public CommentResponse(Long id, String userId, String profileImage, String content) {
         this.id = id;
         this.userId = userId;
         this.content = content;

@@ -1,6 +1,7 @@
 package com.example.kook.domain.comment.domain;
 
 import com.example.kook.domain.post.domain.Post;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -16,9 +17,6 @@ public class Comment {
     private Long id;
 
     @Column(nullable = false, length = 100)
-    private String title;
-
-    @Column(nullable = false, length = 100)
     private String userId;
 
     @Column(nullable = false, length = 100)
@@ -26,11 +24,11 @@ public class Comment {
 
     @ManyToOne
     @JoinColumn(name = "post_id")
+    @JsonIgnore
     private Post post;
 
     @Builder
-    public Comment(String title, String userId, String content, Post post) {
-        this.title = title;
+    public Comment(String userId, String content, Post post) {
         this.userId = userId;
         this.content = content;
         this.post = post;

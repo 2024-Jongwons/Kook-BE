@@ -54,4 +54,9 @@ public class Post {
     public int getCommentCount() {
         return comments != null ? comments.size() : 0; //0으로 반환 안해줬더니 널값이라 에러나는거 진짜 넘 서운함
     }
+
+    public int addHeartCount(){
+        this.heartCount += 1;
+        return this.heartCount;
+    }
 }
