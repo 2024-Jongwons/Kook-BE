@@ -44,6 +44,11 @@ public class PostController {
         return postService.getAllPosts();
     }
 
+    @GetMapping("/search")
+    public List<Post> getPostsByTitle(@RequestParam String title) {
+        return postService.findPost(title);
+    }
+
     @PostMapping("/heart/{postId}")
     public ResponseEntity<Integer> addHeart(@PathVariable Long postId) {
         Integer updatedHeartCount = postService.addHeartToPost(postId);
