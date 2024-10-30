@@ -73,4 +73,9 @@ public class PostService {
         return postRepository.findById(postId)
                 .orElseThrow(() -> new IllegalArgumentException("해당 게시물이 존재하지 않습니다: " + postId));
     }
+
+    @Transactional(readOnly = true)
+    public List<Post> findPostsByTagNames(Set<String> tagNames) {
+        return postRepository.findByTags_Names(tagNames);
+    }
 }

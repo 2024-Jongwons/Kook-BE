@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/post")
@@ -34,9 +35,10 @@ public class PostController {
         return ResponseEntity.ok(postService.createPost(postRequest));
     } //악더러워
 
-    @GetMapping("/tag/{tagName}")
-    public List<Post> getPostsByTag(@PathVariable String tagName) {
-        return postService.getPostsByTagName(tagName);
+    @GetMapping("/searchByTags")
+    public ResponseEntity<List<Post>> getPostsByTagNames(@RequestParam Set<String> tagNames) {
+        List<Post> posts = postService.findPostsByTagNames(tagNames);
+        return ResponseEntity.ok(posts);
     }
 
     @GetMapping()
